@@ -1,0 +1,61 @@
+# Checks: >
+#   -*,
+#   bugprone-*,
+#   performance-*,
+#   readability-*,
+#   modernize-*,
+#   cppcoreguidelines-*,
+#   clang-analyzer-*,
+#   misc-*,
+#   cert-*,
+#   portability-*,
+#   llvm-header-guard,
+#   google-*,
+#   hicpp-*,
+#   readability-*,
+#   clang-diagnostic-*,
+#   clang-analyzer-*,
+# WarningsAsErrors: ''
+# HeaderFilterRegex: '.*'
+# AnalyzeTemporaryDtors: false
+# FormatStyle: none
+# User: 'VisualStudioUser'
+# CheckOptions:
+#   - key:             readability-identifier-naming.ClassCase
+#     value:           CamelCase
+#   - key:             readability-identifier-naming.MethodCase
+#     value:           camelBack
+#   - key:             readability-identifier-naming.VariableCase
+#     value:           lower_case
+#   - key:             readability-identifier-naming.ConstantCase
+#     value:           UPPER_CASE
+#   - key:             modernize-use-auto.MinTypeNameLength
+#     value:           '5'
+#   - key:             modernize-use-using.CheckAliasTemplate
+#     value:           true
+#   - key:             performance-unnecessary-value-param.AllowedTypes
+#     value:           std::pair;std::tuple
+#   - key:             modernize-deprecated-headers.UseCxxHeaders
+#     value:           true
+
+
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  cppcoreguidelines-*,
+
+WarningsAsErrors: '*'
+# FormatStyle: 'file'
+
+CheckOptions:
+  - key: llvmlibc-restrict-system-libc-headers
+    value: true
+  - key: llvmlibc-implementation-in-namespace
+    value: 'LIBC_NAMESPACE'
+  - key: fuchsia-trailing-return
+    value: false
+  - key: altera-unroll-loops
+    value: true
+  - key: readability-include-cleaner-include-style
+    value: 'strict'

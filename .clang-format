@@ -1,0 +1,35 @@
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html 참고 작성
+# ---
+# BasedOnStyle: LLVM # LLVM 스타일을 기반
+# IndentWidth: 4 # 들여쓰기를 4칸으로 설정
+
+# https://github.com/cpm-cmake/CPM.cmake/blob/master/.clang-format 참고 작성
+---
+BasedOnStyle: Google
+AccessModifierOffset: "-2"
+AlignTrailingComments: "true"
+AllowAllParametersOfDeclarationOnNextLine: "false"
+AlwaysBreakTemplateDeclarations: "No"
+BreakBeforeBraces: Attach
+ColumnLimit: "100"
+ConstructorInitializerAllOnOneLineOrOnePerLine: "true"
+IncludeBlocks: Regroup
+IndentPPDirectives: AfterHash
+IndentWidth: "4"
+NamespaceIndentation: All
+BreakBeforeBinaryOperators: All
+BreakBeforeTernaryOperators: "true"
+SortIncludes: true
+IncludeCategories:
+  - Regex: '^<.*\.h>'
+    Priority: 1
+  - Regex: '^".*\.h"'
+    Priority: 2
+  - Regex: ".*"
+    Priority: 3
+DerivePointerAlignment: false
+PointerAlignment: Left
+---
+Language: Cpp
+DerivePointerAlignment: false # C++에서 포인터를 강제로 타입에 맞추지 않음.
+PointerAlignment: Left # 포인터를 왼쪽으로 정렬
