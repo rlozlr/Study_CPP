@@ -1,10 +1,13 @@
 #include "week02.hpp"
 
+// namespace를 써라
+// 예외처리는 프로젝트에 따라 결정된다. 요즘에는 exception을 안쓰는 추세.
+
 // 6. Find the Index
 // 문자열 벡터와 문자열을 인자로 받아서 해당 문자열의 index를 return
 auto findIndex(std::vector<std::string> const& src, std::string const& tgt) -> int {
     // - std::ranges::find: 범위에서 요소를 찾음. 여기서는 벡터에서 tgt 문자열을 찾음
-    auto foundIdx = std::ranges::find(src.begin(), src.end(), tgt);
+    auto foundIdx = std::ranges::find(src, tgt);
     // - std::distance: 두 반복자 사이의 거리를 계산하여 인덱스를 얻음
     return (foundIdx != src.end()) ? std::distance(src.begin(), foundIdx) : -1;
 }
@@ -12,7 +15,8 @@ auto findIndex(std::vector<std::string> const& src, std::string const& tgt) -> i
 // 7. Product Divisible By Sum?
 // 정수 벡터가 주어졌을 때, 그 벡터의 곱이 해당 벡터의 합으로 나누어지면 true return
 auto divisible(std::vector<int> const& src) -> bool {
-    // - std::accumulate: 범위에서 모든 요소를 누적하여 합 또는 곱을 계산
+    // - std::accumulate: 범위에서 모든 요소를 누적하여 합 또는 곱을 계산 (순서 반드시)
+    // 순서 상관 없다면 std::reduce, default는 plus
     int sum = std::accumulate(src.begin(), src.end(), 0);
     int product = std::accumulate(src.begin(), src.end(), 1, std::multiplies<int>());
     return product % sum == 0;
@@ -21,8 +25,11 @@ auto divisible(std::vector<int> const& src) -> bool {
 // 8. Factor Chain
 // 인수 체인(factor chain)은 각 이전 요소가 다음 연속 요소의 인수(factor)인 정수
 // "인수(factor)"는 한 숫자가 다른 숫자를 나누어 떨어지게 만드는 수
+// std::non_of 사용으로도 풀 수 있음 (lambda 안에서 직접 주소 사용 x / prev, next 사용을 권장한다)
+// vector<bool>은 되도록 쓰지 말 것
 auto factorChain(std::vector<int> const& src) -> bool {
     // - std::adjacent_find: 인접한 요소 쌍을 찾음. 여기서는 b가 a로 나누어지지 않는 쌍을 찾음
+    // while문과 비슷함
     return std::adjacent_find(src.begin(), src.end(), [](int a, int b) { return b % a != 0; })
            == src.end();
 }
@@ -46,6 +53,8 @@ auto isIdentical(std::string const& src) -> bool {
 // 11. Hamming Distance
 // Hamming Distance는 두 문자열 사이의 서로 다른 문자의 개수를 의미
 // 두 문자열 사이의 해밍 거리를 계산
+// ranges를 두 개 받을 수 있는 함수가 있다.
+// inner_product를 사용하는 방법이 BEST
 auto hammingDistance(std::string const& src0, std::string const& src1) -> int {
     // - std::transform_reduce: 두 범위의 요소를 결합하고 변환하여 누적 값을 계산
     return std::transform_reduce(
@@ -57,12 +66,13 @@ auto hammingDistance(std::string const& src0, std::string const& src1) -> int {
 // 두 개의 문자열을 받아서, 첫 번째 문자열이 두 번째 문자열에서 중복 개수 (대소문자 구분)
 auto charCount(char ch, std::string const& src) -> int {
     // - std::ranges::count: 범위에서 특정 값의 개수를 셈
-    return std::ranges::count(src.begin(), src.end(), ch);
+    return std::ranges::count(src, ch);
 }
 
 // 13. Mean of All Digits
 // 모든 자릿수의 평균 반환 (항상 integer)
-auto mean(int n) -> int {
+auto mean(int n) -> int {  // 굳이 string 할 필요가 없다.
+                           // trnasfomr_reduce도 사용할 수 있다.
     n = std::abs(n);
     // - std::to_string: 정수를 문자열로 변환
     std::string digits = std::to_string(n);
@@ -77,6 +87,7 @@ auto mean(int n) -> int {
 auto doubleLetters(std::string const& src) -> bool {
     // - std::adjacent_find: 인접한 요소 쌍을 찾음
     return std::adjacent_find(src.begin(), src.end()) != src.end();
+    // adjacent_difference도 사용가능
 }
 
 // 15. Minimum Removals to Make Sum Even
@@ -84,6 +95,7 @@ auto doubleLetters(std::string const& src) -> bool {
 // 이미 합이 짝수인 경우에는 0을 반환
 // 홀수인 경우에는 idx 앞에서 하나씩 지우면서 홀수로 맞춤
 auto minimumRemovals(std::vector<int> const& src) -> int {
+    // iota, filter,distance로 풀 수 있다.
     // - std::accumulate: 범위에서 모든 요소를 누적하여 합을 계산
     int sum = std::accumulate(src.begin(), src.end(), 0);
     if (sum % 2 == 0) return 0;
@@ -140,9 +152,9 @@ auto indexShuffle(std::string const& src) -> std::string {
     std::string evenCharacters, oddCharacters;
     // - std::partition_copy: 범위를 두 개의 범위로 복사하여 분할
     // - std::back_inserter: 요소를 컨테이너의 끝에 삽입할 수 있는 반복자 생성
-    std::partition_copy(src.begin(), src.end(), std::back_inserter(evenCharacters),
-                        std::back_inserter(oddCharacters),
-                        [index = 0](char) mutable { return index++ % 2 == 0; });
+    std::ranges::partition_copy(src, std::back_inserter(evenCharacters),
+                                std::back_inserter(oddCharacters),
+                                [index = 0](char) mutable { return index++ % 2 == 0; });
 
     return evenCharacters + oddCharacters;
 }
@@ -162,6 +174,7 @@ auto spelling(std::string const& src) -> std::vector<std::string> {
 // 19. Factorize a Number
 // 주어진 숫자의 모든 약수를 포함하는 벡터
 // 입력으로 주어지는 정수는 양수
+// view를 vector로 바로 생성 가능한지 search
 auto factorize(int n) -> std::vector<int> {
     std::vector<int> factors;
     // - std::ranges::for_each: 범위의 각 요소에 대해 함수 호출
@@ -175,6 +188,7 @@ auto factorize(int n) -> std::vector<int> {
     });
     return factors;
 }
+
 // 20. Find the Missing Number
 // 주어진 정수 벡터에서 (1부터 10까지의 숫자 중에서 하나가 빠진) 누락된 숫자를 찾기
 auto missingNum(std::vector<int> const& src) -> int {

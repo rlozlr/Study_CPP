@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)  
 
-if(UNIT_TEST_WEEK01)
+if(UNIT_TEST_WEEK01r)
     cpmaddpackage("gh:doctest/doctest@2.4.9")                       # CPM.cmake을 사용하여 doctest 라이브러리 버전 2.4.9를 설치set(TESTS week01_test)                                          # 테스트 실행 파일의 이름을 week01_test로 설정
 
 
