@@ -6,10 +6,12 @@ if(UNIT_TEST_WEEK03)
     set(TESTS week03_test)
     add_executable(${TESTS} week03.spec.cpp)
 
-    target_link_libraries(${TESTS}
-    PRIVATE doctests::doctest_discover_test annzy::week03)
+    target_link_libraries(${TESTS}                                 
+                            PRIVATE doctest::doctest 
+                            annzy::week03)
 
     include(cTest)
     include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
     doctest_discover_tests(${TESTS})
 endif()
+

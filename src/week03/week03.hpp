@@ -1,7 +1,17 @@
 #pragma once
 
-#include <string>
-#include <vector>
+#include <algorithm>  // for std::all_of, std::rotate, std::sort, std::reverse, std::copy_if, std::equal, std::partition_copy, std::ranges::generate
+#include <cassert>
+#include <cctype>  // for std::tolower, std::isalnum, std::isalpha, std::isdigit
+#include <iostream>
+#include <iterator>  // for std::back_inserter
+#include <numeric>   // for std::iota
+#include <regex>
+#include <set>            // for std::set
+#include <string>         // for std::string, std::toupper
+#include <unordered_map>  // for std::unordered_map
+#include <unordered_set>  // for std::unordered_set
+#include <vector>         // for std::vector
 
 auto identicalFilter(std::vector<std::string> const& arr) -> std::vector<std::string>;
 auto shiftL(std::vector<int> const& arr, int num) -> std::vector<int>;

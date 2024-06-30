@@ -74,7 +74,8 @@
         "span": "cpp",
         "deque": "cpp",
         "execution": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "regex": "cpp"
     },
     "C_Cpp.codeAnalysis.clangTidy.enabled": true,
     "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [

@@ -24,7 +24,7 @@ include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 # unit test 제어 option(변수명 "설명(필수아님)"" ON/OFF)
 option(UNIT_TEST_WEEK01 "Build week01 tests" OFF)
 option(UNIT_TEST_WEEK02 "Build week02 tests" OFF)
-option(UNIT_TEST_WEEK03 "Build week03 tests" OFF)
+option(UNIT_TEST_WEEK03 "Build week03 tests" ON)
 
 enable_testing()                                    # 테스팅을 활성화
 add_subdirectory(src/week01)                        # src/week01 dir에서 하위 프로젝트 추가
