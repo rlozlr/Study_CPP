@@ -1,3 +1,7 @@
+/.vscode
+/build
+/.md
+
 # Sources
 *.c     text diff=cpp
 *.cc    text diff=cpp
