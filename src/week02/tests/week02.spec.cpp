@@ -3,10 +3,11 @@
 
 #include <src/week02/week02.hpp>
 
+using namespace annzy::week02;
 // 6. Find the Index
 // Create a function that takes a vector of strings and a string as arguments
 // and returns the index of the string.
-TEST_CASE("findIndex") {
+TEST_CASE("week02::findIndex") {
     REQUIRE(findIndex({"abc", "ghj", "banana", "grape"}, "grape") == 3);
     REQUIRE(findIndex({"a", "b", "c", "d", "e", "f"}, "f") == 5);
     REQUIRE(findIndex({"hi", "edabit.com", "testcase", "validstring"}, "edabit.com") == 1);
@@ -14,7 +15,7 @@ TEST_CASE("findIndex") {
 // 7. Product Divisible By Sum?
 // Write a function that, given a vector of integers, returns true if the
 // product of the vector is divisible by the sum of that same vector.
-TEST_CASE("divisible") {
+TEST_CASE("week02::divisible") {
     REQUIRE(divisible({4, 4, 4, 4}));
     REQUIRE(divisible({4, 2, 6}));
     REQUIRE(divisible({10, 5, 10}));
@@ -33,7 +34,7 @@ TEST_CASE("divisible") {
 // 12 is a factor of 36
 //
 // Create a function that checks whether or not a vector is a factor chain.
-TEST_CASE("factorChain") {
+TEST_CASE("week02::factorChain") {
     REQUIRE(factorChain({1, 2, 4, 8, 16, 32}));
     REQUIRE(factorChain({1, 1, 1, 1, 1, 1}));
     REQUIRE(factorChain({10, 20, 40}));
@@ -45,7 +46,7 @@ TEST_CASE("factorChain") {
 
 // 9. Concatenating two integer vectors
 // Create a function to concatenate two vectors of integers.
-TEST_CASE("concat") {
+TEST_CASE("week02::concat") {
     REQUIRE(concat({7, 8}, {10, 9, 1, 1, 2}) == std::vector<int>({7, 8, 10, 9, 1, 1, 2}));
     REQUIRE(concat({4, 5, 1}, {3, 3, 3, 3, 3}) == std::vector<int>({4, 5, 1, 3, 3, 3, 3, 3}));
 }
@@ -53,7 +54,7 @@ TEST_CASE("concat") {
 // 10. Check if a String Contains only Identical Characters
 // Write a function that returns true if all characters in a string are
 // identical and false otherwise.
-TEST_CASE("isIdentical") {
+TEST_CASE("week02::isIdentical") {
     REQUIRE(isIdentical("kkkkk"));
     REQUIRE(isIdentical("ccc"));
     REQUIRE(isIdentical("bbbbbb"));
@@ -73,7 +74,7 @@ TEST_CASE("isIdentical") {
 // -> Hamming Distance is 1 because 'b' vs 'd' is the only difference.
 //
 // Create a function that computes the hamming distance between two strings.
-TEST_CASE("hammingDistance") {
+TEST_CASE("week02::hammingDistance") {
     REQUIRE(hammingDistance("abcde", "bcdef") == 5);
     REQUIRE(hammingDistance("abcde", "abcde") == 0);
     REQUIRE(hammingDistance("strong", "strung") == 1);
@@ -83,7 +84,7 @@ TEST_CASE("hammingDistance") {
 // Create a function that takes two strings as arguments and returns the
 // number of times the first string is found in the second string.
 // Your output must be case-sensitive (see assertion #4).
-TEST_CASE("charCount") {
+TEST_CASE("week02::charCount") {
     REQUIRE(charCount('a', "edabit") == 1);
     REQUIRE(charCount('b', "big fat bubble") == 4);
     REQUIRE(charCount('f',
@@ -100,7 +101,7 @@ TEST_CASE("charCount") {
 // 13. Mean of All Digits
 // Create a function that returns the mean of all digits.
 // The mean will always be a integer.
-TEST_CASE("mean") {
+TEST_CASE("week02::mean") {
     REQUIRE(mean(666) == 6);
     REQUIRE(mean(80) == 4);
     REQUIRE(mean(-13) == 2);
@@ -109,7 +110,7 @@ TEST_CASE("mean") {
 // 14. Double Letters
 // Create a function that takes a word and returns true if the word has
 // two consecutive identical letters.
-TEST_CASE("doubleLetters") {
+TEST_CASE("week02::doubleLetters") {
     REQUIRE(doubleLetters("loop"));
     REQUIRE(doubleLetters("meeting"));
     REQUIRE(doubleLetters("yummy"));
@@ -128,7 +129,7 @@ TEST_CASE("doubleLetters") {
 // Create a function that returns the minimum number of removals to make
 // the sum of all elements in a vector even.
 // If the sum is already even, return 0 (see assertion #2, #6 and #8).
-TEST_CASE("minimumRemovals") {
+TEST_CASE("week02::minimumRemovals") {
     REQUIRE(minimumRemovals({1, 2, 3, 4, 5}) == 1);
     REQUIRE(minimumRemovals({1, 2, 3, 4}) == 0);
     REQUIRE(minimumRemovals({5, 8, 8, 8}) == 1);
@@ -161,7 +162,7 @@ TEST_CASE("minimumRemovals") {
 // Maurice wins if his competing snail's speed strictly exceeds
 // Steve's competing snail's speed.
 // Steve will always play in this order: [f, s, m].
-TEST_CASE("mauriceWins") {
+TEST_CASE("week02::mauriceWins") {
     REQUIRE(mauriceWins({3, 5, 10}, {4, 7, 11}));
     REQUIRE(mauriceWins({1, 8, 20}, {2, 9, 100}));
     REQUIRE(mauriceWins({2, 4, 10}, {3, 9, 11}));
@@ -172,7 +173,7 @@ TEST_CASE("mauriceWins") {
 // 17. Index Shuffle
 // Create a function that takes all even-indexed characters and odd-indexed
 // characters from a string and concatenates them together.
-TEST_CASE("indexShuffle") {
+TEST_CASE("week02::indexShuffle") {
     REQUIRE(indexShuffle("abcdef") == "acebdf");
     REQUIRE(indexShuffle("abababab") == "aaaabbbb");
     REQUIRE(indexShuffle("it was a beautiful day") == "i a  euiu atwsabatfldy");
@@ -182,7 +183,7 @@ TEST_CASE("indexShuffle") {
 // 18. Spelling it Out
 // Create a function which takes in a word and spells it out,
 // by consecutively adding letters until the full word is completed.
-TEST_CASE("spelling") {
+TEST_CASE("week02::spelling") {
     REQUIRE(spelling("bee") == std::vector<std::string>({"b", "be", "bee"}));
     REQUIRE(spelling("cake") == std::vector<std::string>({"c", "ca", "cak", "cake"}));
     REQUIRE(spelling("happy") == std::vector<std::string>({"h", "ha", "hap", "happ", "happy"}));
@@ -197,7 +198,7 @@ TEST_CASE("spelling") {
 // The input integer will be positive.
 // A factor is a number that evenly divides into another number without
 // leaving a remainder.
-TEST_CASE("factorize") {
+TEST_CASE("week02::factorize") {
     REQUIRE(factorize(12) == std::vector<int>({1, 2, 3, 4, 6, 12}));
     REQUIRE(factorize(4) == std::vector<int>({1, 2, 4}));
     REQUIRE(factorize(17) == std::vector<int>({1, 17}));
@@ -209,7 +210,7 @@ TEST_CASE("factorize") {
 // (excluding one number) and returns the missing number.
 // The vector of numbers will be unsorted (not in order).
 // Only one number will be missing.
-TEST_CASE("missingNum") {
+TEST_CASE("week02::missingNum") {
     REQUIRE(missingNum({1, 2, 3, 4, 6, 7, 8, 9, 10}) == 5);
     REQUIRE(missingNum({7, 2, 3, 6, 5, 9, 1, 4, 8}) == 10);
     REQUIRE(missingNum({7, 2, 3, 9, 4, 5, 6, 8, 10}) == 1);

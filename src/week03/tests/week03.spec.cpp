@@ -3,7 +3,9 @@
 
 #include <src/week03/week03.hpp>
 
-TEST_CASE("identicalFilter") {
+using namespace annzy::week03;
+
+TEST_CASE("week03::identicalFilter") {
     REQUIRE_EQ(identicalFilter({"aaaaaa", "bc", "d", "eeee", "xyz"}),
                std::vector<std::string>({"aaaaaa", "d", "eeee"}));
     REQUIRE_EQ(identicalFilter({"88", "999", "22", "545", "133"}),
@@ -13,7 +15,7 @@ TEST_CASE("identicalFilter") {
     REQUIRE_EQ(identicalFilter({"1", "2", "3"}), std::vector<std::string>({"1", "2", "3"}));
 }
 
-TEST_CASE("shiftL") {
+TEST_CASE("week03::shiftL") {
     REQUIRE_EQ(shiftL({1, 2, 3, 4}, 1), std::vector<int>({2, 3, 4, 1}));
     REQUIRE_EQ(shiftL({1, 2, 3, 4, 5}, 3), std::vector<int>({4, 5, 1, 2, 3}));
     REQUIRE_EQ(shiftL({1, 2, 3, 4, 5}, 5), std::vector<int>({1, 2, 3, 4, 5}));
@@ -22,7 +24,7 @@ TEST_CASE("shiftL") {
     REQUIRE_EQ(shiftL({1, 2, 3, 4, 5}, 4), std::vector<int>({5, 1, 2, 3, 4}));
 }
 
-TEST_CASE("shiftR") {
+TEST_CASE("week03::shiftR") {
     REQUIRE_EQ(shiftR({1, 2, 3, 4, 5}, 1), std::vector<int>({5, 1, 2, 3, 4}));
     REQUIRE_EQ(shiftR({1, 2, 3, 4, 5}, 3), std::vector<int>({3, 4, 5, 1, 2}));
     REQUIRE_EQ(shiftR({1, 2, 3, 4, 5}, 0), std::vector<int>({1, 2, 3, 4, 5}));
@@ -30,7 +32,7 @@ TEST_CASE("shiftR") {
     REQUIRE_EQ(shiftR({1, 2, 3, 4}, 1), std::vector<int>({4, 1, 2, 3}));
 }
 
-TEST_CASE("setFrom") {
+TEST_CASE("week03::setFrom") {
     REQUIRE_EQ(setFrom({1, 3, 3, 5, 5}), std::vector<int>({1, 3, 5}));
     REQUIRE_EQ(setFrom({4, 4, 4, 4, 4}), std::vector<int>({4}));
     REQUIRE_EQ(setFrom({5, 7, 8, 9, 10, 15}), std::vector<int>({5, 7, 8, 9, 10, 15}));
@@ -39,14 +41,14 @@ TEST_CASE("setFrom") {
     REQUIRE_EQ(setFrom({1, 1, 2, 2, 2}), std::vector<int>({1, 2}));
 }
 
-TEST_CASE("firstAndLast") {
+TEST_CASE("week03::firstAndLast") {
     REQUIRE_EQ(firstAndLast("marmite"), std::vector<std::string>({"aeimmrt", "trmmiea"}));
     REQUIRE_EQ(firstAndLast("bench"), std::vector<std::string>({"bcehn", "nhecb"}));
     REQUIRE_EQ(firstAndLast("scoop"), std::vector<std::string>({"coops", "spooc"}));
     REQUIRE_EQ(firstAndLast("fanatic"), std::vector<std::string>({"aacfint", "tnifcaa"}));
 }
 
-TEST_CASE("convertCartesian") {
+TEST_CASE("week03::convertCartesian") {
     REQUIRE_EQ(convertCartesian({1, 1}, {1, 1}), std::vector<std::vector<int>>({{1, 1}, {1, 1}}));
     REQUIRE_EQ(convertCartesian({9, 8, 3}, {1, 1, 1}),
                std::vector<std::vector<int>>({{9, 1}, {8, 1}, {3, 1}}));
@@ -58,7 +60,7 @@ TEST_CASE("convertCartesian") {
                std::vector<std::vector<int>>({{3, 6}, {2, 1}, {2, 7}, {0, 1}}));
 }
 
-TEST_CASE("sortByLenth") {
+TEST_CASE("week03::sortByLenth") {
     REQUIRE_EQ(sortByLength({"a", "ccc", "dddd", "bb"}),
                std::vector<std::string>({"a", "bb", "ccc", "dddd"}));
     REQUIRE_EQ(sortByLength({"apple", "pie", "shortcake"}),
@@ -69,7 +71,7 @@ TEST_CASE("sortByLenth") {
     REQUIRE_EQ(sortByLength({}), std::vector<std::string>({}));
 }
 
-TEST_CASE("countAdverbs") {
+TEST_CASE("week03::countAdverbs") {
     SUBCASE("Basic") {
         REQUIRE_EQ(countAdverbs("She ran hurriedly towards the stadium."), 1);
         REQUIRE_EQ(countAdverbs("She ate the lasagna heartily and noisily."), 2);
@@ -88,7 +90,7 @@ TEST_CASE("countAdverbs") {
     }
 }
 
-TEST_CASE("societyName") {
+TEST_CASE("week03::societyName") {
     REQUIRE_EQ(societyName({"Adam", "Sarah", "Malcolm"}), "AMS");
     REQUIRE_EQ(societyName({"Phoebe", "Chandler", "Ross", "Rachel", "Monica", "Joey"}), "CJMPRR");
     REQUIRE_EQ(societyName({"Harry", "Newt", "Luna", "Cho"}), "CHLN");
@@ -96,7 +98,7 @@ TEST_CASE("societyName") {
     REQUIRE_EQ(societyName({"Sheldon", "Amy", "Penny", "Howard", "Raj"}), "AHPRS");
 }
 
-TEST_CASE("isPalindrome") {
+TEST_CASE("week03::isPalindrome") {
     REQUIRE_EQ(isPalindrome("A man, a plan, a cat, a ham, a yak, a yam, a hat, "
                             "a canal-Panama!"),
                true);
@@ -104,7 +106,7 @@ TEST_CASE("isPalindrome") {
     REQUIRE_EQ(isPalindrome("Not a palindrome"), false);
 }
 
-TEST_CASE("countUnique") {
+TEST_CASE("week03::countUnique") {
     REQUIRE_EQ(countUnique("apple", "play"), 5);
     REQUIRE_EQ(countUnique("sore", "zebra"), 7);
     REQUIRE_EQ(countUnique("pip", "geeks"), 6);
@@ -112,7 +114,7 @@ TEST_CASE("countUnique") {
     REQUIRE_EQ(countUnique("maniac", "maniac"), 5);
 }
 
-TEST_CASE("isValidPhoneNumber") {
+TEST_CASE("week03::isValidPhoneNumber") {
     REQUIRE(isValidPhoneNumber("(123) 456-7890"));
     REQUIRE_FALSE(isValidPhoneNumber("(1111)555 2345"));
     REQUIRE_FALSE(isValidPhoneNumber("(098) 123 4567"));
@@ -129,7 +131,7 @@ TEST_CASE("isValidPhoneNumber") {
     REQUIRE(isValidPhoneNumber("(519) 505-6498"));
 }
 
-TEST_CASE("tree") {
+TEST_CASE("week03::tree") {
     REQUIRE_EQ(tree(1), std::vector<std::string>({"#"}));
     REQUIRE_EQ(tree(2), std::vector<std::string>({" # ", "###"}));
     REQUIRE_EQ(tree(5), std::vector<std::string>(
@@ -137,7 +139,7 @@ TEST_CASE("tree") {
     REQUIRE_EQ(tree(0), std::vector<std::string>({}));
 }
 
-TEST_CASE("accum") {
+TEST_CASE("week03::accum") {
     REQUIRE_EQ(accum("abcd"), "A-Bb-Ccc-Dddd");
     REQUIRE_EQ(accum("RqaEzty"), "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy");
     REQUIRE_EQ(accum("cwAt"), "C-Ww-Aaa-Tttt");
@@ -162,7 +164,7 @@ TEST_CASE("accum") {
     REQUIRE_EQ(accum("g"), "G");
 }
 
-TEST_CASE("unique") {
+TEST_CASE("week03::unique") {
     REQUIRE_EQ(unique({3, 3, 3, 7, 3, 3}), 7);
     REQUIRE_EQ(unique({0, 0, 0.77, 0, 0}), 0.77);
     REQUIRE_EQ(unique({0, 1, 1, 1, 1, 1, 1, 1}), 0);
@@ -171,7 +173,7 @@ TEST_CASE("unique") {
     REQUIRE_EQ(unique({2, 1, 2, 2, 2, 2, 2, 2}), 1);
 }
 
-TEST_CASE("isAnagram") {
+TEST_CASE("week03::isAnagram") {
     REQUIRE_EQ(isAnagram("cristian", "Cristina"), true);
     REQUIRE_EQ(isAnagram("Dave Barry", "Ray Adverb"), true);
     REQUIRE_EQ(isAnagram("Nope", "Note"), false);
